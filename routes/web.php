@@ -19,7 +19,7 @@ Route::get('/pong', [PingPongController::class, 'pong'])->middleware(CheckAuth::
 Route::get('/flash', [TestFlashController::class, 'flash']);
 Route::post('/traitement', [TestFlashController::class, 'traitement']);
 
-Route::get('/todo', [TodoController::class, 'todo'])->middleware(CheckTodo::class)->middleware('throttle:50,1')->middleware(CheckAuth::class);;
+Route::get('/todos', [TodoController::class, 'todo'])->middleware(CheckTodo::class)->middleware('throttle:50,1')->middleware(CheckAuth::class);;
 Route::post('/todoAdd', [TodoController::class, 'todoAdd'])->middleware('throttle:10,1');
 Route::get('/todo/termine/{id}', [TodoController::class, 'updateTodo']);
 Route::get('/todo/delete/{id}', [TodoController::class, 'deleteTodo']);
