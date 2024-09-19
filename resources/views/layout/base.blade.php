@@ -18,12 +18,15 @@
     <style>
         html,
         body {
-            background-color: #fff;
+            background: linear-gradient(#e66465, #9198e5);
             color: #636b6f;
             font-family: "Raleway", sans-serif;
             font-weight: 100;
             height: 100vh;
             margin: 0;
+        }
+        h1 {
+            margin-top: 0;
         }
         .full-height {
             height: 100vh;
@@ -40,6 +43,11 @@
             position: absolute;
             right: 10px;
             top: 18px;
+        }
+        .main {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 8px;
         }
         .content {
             text-align: center;
@@ -74,7 +82,10 @@
         </div>
     @endif
 
-    <div class="content">@yield('content')</div>
+    <div class="main">
+        <div class="pageTitle">@yield('pageTitle')</div>
+        <div class="content">@yield('content')</div>
+    </div>
 </div>
 </body>
 </html>

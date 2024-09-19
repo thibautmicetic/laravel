@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 class TodoController extends Controller
 {
     public function todo () {
-        return view('todo', ['todos' => Todo::all()]);
+        $todos = Todo::all();
+        $count = $todos->count();
+        return view('todo', ['todos' => $todos, 'count' => $count]);
     }
 
     public function todoAdd(Request $request) {
@@ -23,9 +25,14 @@ class TodoController extends Controller
         return view('update-todo', ['todo' => $todo]);
     }
 
+    public function deleteAllTodos() {
+        Todo::query()->delete();
+        return redirect("/todo");
+    }
+
     public function deleteTodo(int $id) {
         $todo = Todo::find($id);
         $todo->delete();
-        return view('delete-todo', ['todo' => $todo]);
+        return redirect("/todo");
     }
 }

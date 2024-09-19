@@ -19,7 +19,6 @@ class CheckAuth
             return redirect('/login');
         }
 
-
         return $next($request);
     }
 }

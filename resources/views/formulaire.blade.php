@@ -12,6 +12,10 @@
         <button type="submit">Envoyer</button>
     </form>
 
+    @foreach($demandes as $key => $value)
+        <li>{{ $value['titre'] }}, {{ $value['texte'] }}, {{ $value['email'] }}</li>
+    @endforeach
+
     @if(session('success'))
         <div style="color: green;">{{ session('success') }}</div>
     @endif

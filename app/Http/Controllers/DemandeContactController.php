@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class DemandeContactController extends Controller
 {
     public function demandes() {
-        return view('formulaire');
+        $demandes = DemandeContact::all();
+        return view('formulaire', ['demandes' => $demandes]);
     }
 
     public function createDemande(Request $request) {

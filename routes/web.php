@@ -6,6 +6,7 @@ use App\Http\Controllers\PingPongController;
 use App\Http\Controllers\TestFlashController;
 use App\Http\Controllers\TodoController;
 use App\Http\Middleware\CheckAuth;
+use App\Http\Middleware\CheckTodo;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,10 +19,11 @@ Route::get('/pong', [PingPongController::class, 'pong'])->middleware(CheckAuth::
 Route::get('/flash', [TestFlashController::class, 'flash']);
 Route::post('/traitement', [TestFlashController::class, 'traitement']);
 
-Route::get('/todo', [TodoController::class, 'todo'])->middleware(\App\Http\Middleware\CheckTodo::class)->middleware('throttle:50,1');
+Route::get('/todo', [TodoController::class, 'todo'])->middleware(CheckTodo::class)->middleware('throttle:50,1')->middleware(CheckAuth::class);;
 Route::post('/todoAdd', [TodoController::class, 'todoAdd'])->middleware('throttle:10,1');
 Route::get('/todo/termine/{id}', [TodoController::class, 'updateTodo']);
 Route::get('/todo/delete/{id}', [TodoController::class, 'deleteTodo']);
+Route::get('/todo/deleteAll', [TodoController::class, 'deleteAllTodos']);
 
 Route::get('/demandes', [DemandeContactController::class, 'demandes']);
 Route::post('/createDemande', [DemandeContactController::class, 'createDemande']);
